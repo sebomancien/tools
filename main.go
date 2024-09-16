@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -66,17 +65,17 @@ func convert(reader io.Reader, writer io.Writer) {
 		log.Fatal("An error occured while reading the input file:", err)
 	}
 
-	fmt.Fprintln(writer, "#include \"stdint.h\"")
-	fmt.Fprintln(writer)
-	fmt.Fprintf(writer, "uint8_t %s[] = {", array_name)
-	fmt.Fprintln(writer)
+	w := New(writer)
+	w.Println("#include \"stdint.h\"")
+	w.Println()
+	w.Printf("uint8_t %s[] = {", array_name)
+	w.Println()
 	for line := range slices.Chunk(bytes, int(byte_per_line)) {
-		fmt.Fprint(writer, "    ")
+		w.Print("    ")
 		for _, data := range line {
-			fmt.Fprintf(writer, "0x%02X, ", data)
+			w.Printf("0x%02X, ", data)
 		}
-		fmt.Fprintln(writer)
+		w.Println()
 	}
-	fmt.Fprint(writer, "};")
-	fmt.Fprintln(writer)
+	w.Println("};")
 }
