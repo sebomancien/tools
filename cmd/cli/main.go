@@ -1,11 +1,10 @@
 package main
 
 import (
-	"io"
 	"log"
 	"os"
-	"slices"
 
+	"github.com/sebomancien/bin2c/pkg/converter"
 	"github.com/spf13/cobra"
 )
 
@@ -56,26 +55,10 @@ func command(cmd *cobra.Command, args []string) {
 	}
 	defer writer.Close()
 
-	convert(reader, writer)
-}
-
-func convert(reader io.Reader, writer io.Writer) {
-	bytes, err := io.ReadAll(reader)
-	if err != nil {
-		log.Fatal("An error occured while reading the input file:", err)
+	config := converter.Config{
+		ArrayName:   array_name,
+		BytePerLine: byte_per_line,
 	}
 
-	w := New(writer)
-	w.Println("#include \"stdint.h\"")
-	w.Println()
-	w.Printf("uint8_t %s[] = {", array_name)
-	w.Println()
-	for line := range slices.Chunk(bytes, int(byte_per_line)) {
-		w.Print("    ")
-		for _, data := range line {
-			w.Printf("0x%02X, ", data)
-		}
-		w.Println()
-	}
-	w.Println("};")
+	converter.Convert(reader, writer, &config)
 }

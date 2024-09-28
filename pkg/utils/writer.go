@@ -1,4 +1,4 @@
-package main
+package utils
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ type Writer struct {
 	writer io.Writer
 }
 
-func New(w io.Writer) *Writer {
+func NewWriter(w io.Writer) *Writer {
 	return &Writer{
 		writer: w,
 	}
