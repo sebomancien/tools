@@ -1,4 +1,4 @@
-module bin2c
+module github.com/sebomancien/bin2c
 
 go 1.23.0
 
