@@ -8,13 +8,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const (
-	DEFAULT_INPUT_FILE     = "input.bin"
-	DEFAULT_OUTPUT_FILE    = "output.c"
-	DEFAULT_ARRAY_NAME     = "myArray"
-	DEFAULT_BYTES_PER_LINE = 32
-)
-
 var (
 	input_file    string
 	output_file   string
@@ -30,10 +23,10 @@ func main() {
 		Run:   command,
 	}
 
-	rootCmd.Flags().StringVarP(&input_file, "input", "i", DEFAULT_INPUT_FILE, "input file")
-	rootCmd.Flags().StringVarP(&output_file, "output", "o", DEFAULT_OUTPUT_FILE, "output file")
-	rootCmd.Flags().StringVarP(&array_name, "name", "n", DEFAULT_ARRAY_NAME, "name of the C array")
-	rootCmd.Flags().Uint8VarP(&byte_per_line, "length", "l", DEFAULT_BYTES_PER_LINE, "number of bytes per line")
+	rootCmd.Flags().StringVarP(&input_file, "input", "i", "", "input file")
+	rootCmd.Flags().StringVarP(&output_file, "output", "o", "", "output file")
+	rootCmd.Flags().StringVarP(&array_name, "name", "n", converter.DefaultArrayName, "name of the C array")
+	rootCmd.Flags().Uint8VarP(&byte_per_line, "length", "l", converter.DefaultBytesPerLine, "number of bytes per line")
 	rootCmd.MarkFlagRequired("input")
 
 	err := rootCmd.Execute()
@@ -49,11 +42,16 @@ func command(cmd *cobra.Command, args []string) {
 	}
 	defer reader.Close()
 
-	writer, err := os.Create(output_file)
-	if err != nil {
-		log.Fatal("An error occured while opening the output file:", err)
+	var writer *os.File
+	if output_file == "" {
+		writer = os.Stdout
+	} else {
+		writer, err = os.Create(output_file)
+		if err != nil {
+			log.Fatal("An error occured while opening the output file:", err)
+		}
+		defer writer.Close()
 	}
-	defer writer.Close()
 
 	config := converter.Config{
 		ArrayName:   array_name,
