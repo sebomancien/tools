@@ -11,6 +11,11 @@ type Config struct {
 	BytePerLine uint8
 }
 
+const (
+	DefaultArrayName    = "my_array"
+	DefaultBytesPerLine = 16
+)
+
 func Convert(reader io.Reader, writer io.Writer, config *Config) {
 	r := utils.NewReader(reader)
 	w := utils.NewWriter(writer)

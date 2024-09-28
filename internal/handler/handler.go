@@ -8,11 +8,6 @@ import (
 	"github.com/sebomancien/bin2c/pkg/converter"
 )
 
-const (
-	DEFAULT_ARRAY_NAME     = "myArray"
-	DEFAULT_BYTES_PER_LINE = 32
-)
-
 func GetHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := `
 	<!DOCTYPE html>
@@ -58,12 +53,12 @@ func PostHandler(w http.ResponseWriter, r *http.Request) {
 	// Get the request parameters
 	arrayName := r.FormValue("array-name")
 	if arrayName == "" {
-		arrayName = DEFAULT_ARRAY_NAME
+		arrayName = converter.DefaultArrayName
 	}
 	bytesPerLineStr := r.FormValue("bytes-per-line")
 	bytesPerLine, err := strconv.Atoi(bytesPerLineStr)
 	if err != nil || bytesPerLine < 1 {
-		bytesPerLine = DEFAULT_BYTES_PER_LINE
+		bytesPerLine = converter.DefaultBytesPerLine
 	}
 
 	// Read the binary data from the request
