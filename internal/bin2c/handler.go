@@ -1,4 +1,4 @@
-package handler
+package bin2c
 
 import (
 	"fmt"
