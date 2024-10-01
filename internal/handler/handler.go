@@ -21,7 +21,7 @@ func GetHandler(w http.ResponseWriter, r *http.Request) {
 	<body>
 		<div class="container">
 			<h1 class="mt-5">Binary to C Converter</h1>
-			<form class="mt-3" action="/api/v1/bin2c" method="POST" enctype="multipart/form-data">
+			<form class="mt-3" action="/bin2c/convert" method="POST" enctype="multipart/form-data">
 				<div class="mb-3">
 					<label for="binary-file" class="form-label">Upload Binary File</label>
 					<input class="form-control" type="file" id="binary-file" name="binary-file" required>
@@ -49,7 +49,7 @@ func GetHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, tmpl)
 }
 
-func PostHandler(w http.ResponseWriter, r *http.Request) {
+func ConvertHandler(w http.ResponseWriter, r *http.Request) {
 	// Get the request parameters
 	arrayName := r.FormValue("array-name")
 	if arrayName == "" {
