@@ -3,7 +3,7 @@ package converter
 import (
 	"io"
 
-	"github.com/sebomancien/bin2c/pkg/utils"
+	"github.com/sebomancien/tools/pkg/utils"
 )
 
 type Config struct {

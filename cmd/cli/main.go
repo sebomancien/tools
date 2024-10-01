@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/sebomancien/bin2c/pkg/converter"
+	"github.com/sebomancien/tools/pkg/converter"
 	"github.com/spf13/cobra"
 )
 

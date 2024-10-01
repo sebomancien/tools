@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/sebomancien/bin2c/pkg/converter"
+	"github.com/sebomancien/tools/pkg/converter"
 )
 
 func GetHandler(w http.ResponseWriter, r *http.Request) {

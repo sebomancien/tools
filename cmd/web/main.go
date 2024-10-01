@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/sebomancien/bin2c/internal/handler"
+	"github.com/sebomancien/tools/internal/handler"
 )
 
 func main() {
