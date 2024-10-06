@@ -1,0 +1,102 @@
+nb_solutions: 70560
+solutions:
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 2.4Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 2.2Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 2Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 1.8Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 1.6Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 1.5Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 1.3Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 1.2Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 1.1Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
+    - variables:
+        c1: 3.3000002nF
+        r1: 1MΩ
+        r2: 430kΩ
+        r3: 1Ω
+        r4: 1Ω
+      constraints:
+        f1: 1.0077518kHz
+        v1: 992.3076mV
+      score: 0.015444168
