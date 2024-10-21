@@ -5,7 +5,7 @@ import (
 )
 
 func TestParser(t *testing.T) {
-	values := []float32{4.2}
+	values := []float64{4.2}
 	exp := "15+(222-76)/7.5+7*{0}"
 	expected := expression(values)
 
@@ -24,6 +24,6 @@ func TestParser(t *testing.T) {
 	}
 }
 
-func expression(values []float32) float32 {
+func expression(values []float64) float64 {
 	return 15 + (222-76)/7.5 + 7*values[0]
 }

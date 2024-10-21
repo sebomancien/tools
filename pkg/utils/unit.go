@@ -1,13 +1,15 @@
 package utils
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type unitScale struct {
-	value  float32
+	value  float64
 	prefix string
 }
 
-func FormatUnit(value float32, unit string) string {
+func FormatUnit(value float64, unit string) string {
 	var scales = []unitScale{
 		{value: 1e+15, prefix: "P"},
 		{value: 1e+12, prefix: "T"},

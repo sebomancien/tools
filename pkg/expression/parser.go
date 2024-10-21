@@ -61,7 +61,7 @@ func parse(expression string) (Operation, error) {
 			if err != nil {
 				return nil, fmt.Errorf("constant could not be parsed %s", items[i].token.Value)
 			}
-			items[i].operation = NewConst(float32(value))
+			items[i].operation = NewConst(value)
 		case Variable:
 			index, err := strconv.ParseInt(items[i].token.Value, 10, 8)
 			if err != nil {

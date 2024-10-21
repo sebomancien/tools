@@ -9,7 +9,7 @@ import (
 type Variable struct {
 	Name        string    `yaml:"name"`
 	Description string    `yaml:"description"`
-	Values      []float32 `yaml:"values"`
+	Values      []float64 `yaml:"values"`
 	Unit        string    `yaml:"unit"`
 }
 
@@ -17,11 +17,11 @@ type Constraint struct {
 	Name        string  `yaml:"name"`
 	Description string  `yaml:"description"`
 	Formula     string  `yaml:"formula"`
-	Target      float32 `yaml:"target"`
+	Target      float64 `yaml:"target"`
 	Unit        string  `yaml:"unit"`
-	Min         float32 `yaml:"min"`
-	Max         float32 `yaml:"max"`
-	Weight      float32 `yaml:"weight"`
+	Min         float64 `yaml:"min"`
+	Max         float64 `yaml:"max"`
+	Weight      float64 `yaml:"weight"`
 }
 
 type Config struct {
@@ -32,7 +32,7 @@ type Config struct {
 type Solution struct {
 	Variables   map[string]string `yaml:"variables"`
 	Constraints map[string]string `yaml:"constraints"`
-	Score       float32           `yaml:"score"`
+	Score       float64           `yaml:"score"`
 }
 
 type Result struct {

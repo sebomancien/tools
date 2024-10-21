@@ -7,21 +7,21 @@ import (
 
 // Operation interface
 type Operation interface {
-	Evaluate(inputs []float32) (float32, error)
+	Evaluate(inputs []float64) (float64, error)
 	Simplify() Operation
 	String() string
 }
 
 // Constant
 type Const struct {
-	value float32
+	value float64
 }
 
-func NewConst(value float32) *Const {
+func NewConst(value float64) *Const {
 	return &Const{value: value}
 }
 
-func (op *Const) Evaluate(inputs []float32) (float32, error) {
+func (op *Const) Evaluate(inputs []float64) (float64, error) {
 	return op.value, nil
 }
 
@@ -42,7 +42,7 @@ func NewVar(index uint8) *Var {
 	return &Var{index: index}
 }
 
-func (op *Var) Evaluate(inputs []float32) (float32, error) {
+func (op *Var) Evaluate(inputs []float64) (float64, error) {
 	return inputs[op.index], nil
 }
 
@@ -63,8 +63,8 @@ func NewAdd(terms ...Operation) *Add {
 	return &Add{terms: terms}
 }
 
-func (op *Add) Evaluate(inputs []float32) (float32, error) {
-	sum := float32(0)
+func (op *Add) Evaluate(inputs []float64) (float64, error) {
+	var sum float64 = 0
 	for _, operation := range op.terms {
 		val, err := operation.Evaluate(inputs)
 		if err != nil {
@@ -76,7 +76,7 @@ func (op *Add) Evaluate(inputs []float32) (float32, error) {
 }
 
 func (op *Add) Simplify() Operation {
-	var sum float32 = 0
+	var sum float64 = 0
 	var terms []Operation
 
 	for _, t := range op.terms {
@@ -122,7 +122,7 @@ func NewSub(left Operation, right Operation) *Sub {
 	return &Sub{left: left, right: right}
 }
 
-func (op *Sub) Evaluate(inputs []float32) (float32, error) {
+func (op *Sub) Evaluate(inputs []float64) (float64, error) {
 	den, err := op.left.Evaluate(inputs)
 	if err != nil {
 		return 0, err
@@ -165,8 +165,8 @@ func NewMul(terms ...Operation) *Mul {
 	return &Mul{terms: terms}
 }
 
-func (op *Mul) Evaluate(inputs []float32) (float32, error) {
-	sum := float32(1)
+func (op *Mul) Evaluate(inputs []float64) (float64, error) {
+	var sum float64 = 1
 	for _, operation := range op.terms {
 		val, err := operation.Evaluate(inputs)
 		if err != nil {
@@ -178,7 +178,7 @@ func (op *Mul) Evaluate(inputs []float32) (float32, error) {
 }
 
 func (op *Mul) Simplify() Operation {
-	var product float32 = 1
+	var product float64 = 1
 	var terms []Operation
 
 	for _, t := range op.terms {
@@ -224,7 +224,7 @@ func NewDiv(num Operation, den Operation) *Div {
 	return &Div{num: num, den: den}
 }
 
-func (op *Div) Evaluate(inputs []float32) (float32, error) {
+func (op *Div) Evaluate(inputs []float64) (float64, error) {
 	den, err := op.den.Evaluate(inputs)
 	if err != nil {
 		return 0, err

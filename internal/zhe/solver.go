@@ -2,13 +2,14 @@ package zhe
 
 import (
 	"log"
+	"math"
 	"slices"
 	"sync/atomic"
 )
 
 type subsolver struct {
 	config  *config
-	values  []float32
+	values  []float64
 	channel chan<- solution
 	count   uint64
 
@@ -16,10 +17,10 @@ type subsolver struct {
 	nbConstraints int
 }
 
-func newSubsolver(config *config, channel chan<- solution, values ...float32) *subsolver {
+func newSubsolver(config *config, channel chan<- solution, values ...float64) *subsolver {
 	sub := subsolver{
 		config:        config,
-		values:        make([]float32, len(config.variables)+len(config.constraints)),
+		values:        make([]float64, len(config.variables)+len(config.constraints)),
 		nbVariables:   len(config.variables),
 		nbConstraints: len(config.constraints),
 		channel:       channel,
@@ -35,7 +36,7 @@ func (s *subsolver) solve(depth int) {
 			valid := s.evaluate()
 			if valid {
 				solution := solution{
-					values: make([]float32, s.nbVariables+s.nbConstraints),
+					values: make([]float64, s.nbVariables+s.nbConstraints),
 				}
 				copy(solution.values, s.values)
 				s.channel <- solution
@@ -69,13 +70,7 @@ func (s *solution) computeScore(config *config) {
 	// Compute the solution score
 	s.score = 0
 	for i, c := range config.constraints {
-		var diff float32
-		value := s.values[len(config.variables)+i]
-		if c.target > value {
-			diff = c.target - value
-		} else {
-			diff = value - c.target
-		}
+		diff := math.Abs(s.values[len(config.variables)+i] - c.target)
 		if c.target != 0 {
 			diff /= c.target
 		}

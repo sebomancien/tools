@@ -3,15 +3,15 @@ package zhe
 import "github.com/sebomancien/tools/pkg/expression"
 
 type variable struct {
-	values []float32
+	values []float64
 }
 
 type constraint struct {
 	exp    expression.Operation
-	target float32
-	min    float32
-	max    float32
-	weight float32
+	target float64
+	min    float64
+	max    float64
+	weight float64
 }
 
 type config struct {
@@ -20,8 +20,8 @@ type config struct {
 }
 
 type solution struct {
-	values []float32
-	score  float32
+	values []float64
+	score  float64
 }
 
 type result struct {

@@ -10,7 +10,7 @@ import (
 
 func (in Variable) toInternal() variable {
 	out := variable{
-		values: make([]float32, len(in.Values)),
+		values: make([]float64, len(in.Values)),
 	}
 	copy(out.values, in.Values)
 	return out
