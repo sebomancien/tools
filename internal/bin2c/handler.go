@@ -1,52 +1,17 @@
 package bin2c
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
+	"github.com/sebomancien/tools/internal/tmpl"
 	"github.com/sebomancien/tools/pkg/converter"
 )
 
 func GetHandler(w http.ResponseWriter, r *http.Request) {
-	tmpl := `
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Bin2C</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-	</head>
-	<body>
-		<div class="container">
-			<h1 class="mt-5">Binary to C Converter</h1>
-			<form class="mt-3" action="/bin2c/convert" method="POST" enctype="multipart/form-data">
-				<div class="mb-3">
-					<label for="binary-file" class="form-label">Upload Binary File</label>
-					<input class="form-control" type="file" id="binary-file" name="binary-file" required>
-				</div>
-				<div class="mb-3">
-					<label for="array-name" class="form-label">C Array Name</label>
-					<input class="form-control" type="text" id="array-name" name="array-name" placeholder="Enter C Array Name" required
-					pattern="[a-zA-Z_][a-zA-Z0-9_]*" 
-					title="C array name must start with a letter or underscore and can only contain letters, digits, and underscores">
-					<div class="invalid-feedback">Invalid C array name. Must start with a letter or underscore and only contain alphanumeric characters or underscores.</div>
-				</div>
-				<div class="mb-3">
-					<label for="bytes-per-line" class="form-label">Bytes per Line</label>
-					<input class="form-control" type="number" id="bytes-per-line" name="bytes-per-line" placeholder="Enter Number of Bytes per Line" min="1" max="128" required>
-					<div class="invalid-feedback">Bytes per line must be a number between 1 and 128.</div>
-				</div>
-				<button type="submit" class="btn btn-primary">Convert</button>
-			</form>
-		</div>
-	</body>
-	</html>
-	`
 	w.Header().Set("Content-Type", "text/html")
 	w.WriteHeader(http.StatusOK)
-	fmt.Fprint(w, tmpl)
+	tmpl.Execute(w, "body1.html", "Bin2C", nil)
 }
 
 func ConvertHandler(w http.ResponseWriter, r *http.Request) {
